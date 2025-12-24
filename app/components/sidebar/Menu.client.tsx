@@ -342,13 +342,13 @@ export const Menu = () => {
           <div className="flex items-center gap-3">
             <HelpButton onClick={() => window.open('https://stackblitz-labs.github.io/bolt.diy/', '_blank')} />
             <span className="font-medium text-sm text-gray-900 dark:text-white truncate">
-              {profile?.username || 'Guest User'}
+              {profile?.username || 'Misafir Kullanıcı'}
             </span>
             <div className="flex items-center justify-center w-[32px] h-[32px] overflow-hidden bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-500 rounded-full shrink-0">
               {profile?.avatar ? (
                 <img
                   src={profile.avatar}
-                  alt={profile?.username || 'User'}
+                  alt={profile?.username || 'Kullanıcı'}
                   className="w-full h-full object-cover"
                   loading="eager"
                   decoding="sync"
@@ -368,7 +368,7 @@ export const Menu = () => {
                 className="flex-1 flex gap-2 items-center bg-purple-50 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-500/20 rounded-lg px-4 py-2 transition-colors"
               >
                 <span className="inline-block i-ph:plus-circle h-4 w-4" />
-                <span className="text-sm font-medium">Start new chat</span>
+                <span className="text-sm font-medium">Yeni sohbet başlat</span>
               </a>
               <button
                 onClick={toggleSelectionMode}
@@ -378,7 +378,7 @@ export const Menu = () => {
                     ? 'bg-purple-600 dark:bg-purple-500 text-white border border-purple-700 dark:border-purple-600'
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700',
                 )}
-                aria-label={selectionMode ? 'Exit selection mode' : 'Enter selection mode'}
+                aria-label={selectionMode ? 'Seçim modundan çık' : 'Seçim moduna gir'}
               >
                 <span className={selectionMode ? 'i-ph:x h-4 w-4' : 'i-ph:check-square h-4 w-4'} />
               </button>
@@ -390,18 +390,18 @@ export const Menu = () => {
               <input
                 className="w-full bg-gray-50 dark:bg-gray-900 relative pl-9 pr-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-500/50 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-500 border border-gray-200 dark:border-gray-800"
                 type="search"
-                placeholder="Search chats..."
+                placeholder="Sohbetleri ara..."
                 onChange={handleSearchChange}
-                aria-label="Search chats"
+                aria-label="Sohbetleri ara"
               />
             </div>
           </div>
           <div className="flex items-center justify-between text-sm px-4 py-2">
-            <div className="font-medium text-gray-600 dark:text-gray-400">Your Chats</div>
+            <div className="font-medium text-gray-600 dark:text-gray-400">Sohbetleriniz</div>
             {selectionMode && (
               <div className="flex items-center gap-2">
                 <Button variant="ghost" size="sm" onClick={selectAll}>
-                  {selectedItems.length === filteredList.length ? 'Deselect all' : 'Select all'}
+                  {selectedItems.length === filteredList.length ? 'Tüm seçimi kaldır' : 'Tümünü seç'}
                 </Button>
                 <Button
                   variant="destructive"
@@ -409,7 +409,7 @@ export const Menu = () => {
                   onClick={handleBulkDeleteClick}
                   disabled={selectedItems.length === 0}
                 >
-                  Delete selected
+                  Seçilenleri sil
                 </Button>
               </div>
             )}
@@ -417,7 +417,7 @@ export const Menu = () => {
           <div className="flex-1 overflow-auto px-3 pb-3">
             {filteredList.length === 0 && (
               <div className="px-4 text-gray-500 dark:text-gray-400 text-sm">
-                {list.length === 0 ? 'No previous conversations' : 'No matches found'}
+                {list.length === 0 ? 'Geçmiş sohbet bulunmuyor' : 'Eşleşme bulunamadı'}
               </div>
             )}
             <DialogRoot open={dialogContent !== null}>
@@ -451,20 +451,20 @@ export const Menu = () => {
                 {dialogContent?.type === 'delete' && (
                   <>
                     <div className="p-6 bg-white dark:bg-gray-950">
-                      <DialogTitle className="text-gray-900 dark:text-white">Delete Chat?</DialogTitle>
+                      <DialogTitle className="text-gray-900 dark:text-white">Sohbeti Sil?</DialogTitle>
                       <DialogDescription className="mt-2 text-gray-600 dark:text-gray-400">
                         <p>
-                          You are about to delete{' '}
+                          Şunu silmek üzeresiniz:{' '}
                           <span className="font-medium text-gray-900 dark:text-white">
                             {dialogContent.item.description}
                           </span>
                         </p>
-                        <p className="mt-2">Are you sure you want to delete this chat?</p>
+                        <p className="mt-2">Bu sohbeti silmek istediğinizden emin misiniz?</p>
                       </DialogDescription>
                     </div>
                     <div className="flex justify-end gap-3 px-6 py-4 bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
                       <DialogButton type="secondary" onClick={closeDialog}>
-                        Cancel
+                        İptal
                       </DialogButton>
                       <DialogButton
                         type="danger"
@@ -474,7 +474,7 @@ export const Menu = () => {
                           closeDialog();
                         }}
                       >
-                        Delete
+                        Sil
                       </DialogButton>
                     </div>
                   </>
@@ -482,11 +482,11 @@ export const Menu = () => {
                 {dialogContent?.type === 'bulkDelete' && (
                   <>
                     <div className="p-6 bg-white dark:bg-gray-950">
-                      <DialogTitle className="text-gray-900 dark:text-white">Delete Selected Chats?</DialogTitle>
+                      <DialogTitle className="text-gray-900 dark:text-white">Seçili Sohbetleri Sil?</DialogTitle>
                       <DialogDescription className="mt-2 text-gray-600 dark:text-gray-400">
                         <p>
-                          You are about to delete {dialogContent.items.length}{' '}
-                          {dialogContent.items.length === 1 ? 'chat' : 'chats'}:
+                          {dialogContent.items.length} {dialogContent.items.length === 1 ? 'sohbeti' : 'sohbetleri'}{' '}
+                          silmek üzeresiniz:
                         </p>
                         <div className="mt-2 max-h-32 overflow-auto border border-gray-100 dark:border-gray-800 rounded-md bg-gray-50 dark:bg-gray-900 p-2">
                           <ul className="list-disc pl-5 space-y-1">
@@ -497,12 +497,12 @@ export const Menu = () => {
                             ))}
                           </ul>
                         </div>
-                        <p className="mt-3">Are you sure you want to delete these chats?</p>
+                        <p className="mt-3">Bu sohbetleri silmek istediğinizden emin misiniz?</p>
                       </DialogDescription>
                     </div>
                     <div className="flex justify-end gap-3 px-6 py-4 bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
                       <DialogButton type="secondary" onClick={closeDialog}>
-                        Cancel
+                        İptal
                       </DialogButton>
                       <DialogButton
                         type="danger"
@@ -517,7 +517,7 @@ export const Menu = () => {
                           closeDialog();
                         }}
                       >
-                        Delete
+                        Sil
                       </DialogButton>
                     </div>
                   </>
